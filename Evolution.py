@@ -147,13 +147,16 @@ class Species:
 
 while(1):
 	os.system('clear')
-	print('GENERATION: %d\t Target: \'%s\'\n\tPopulation:%d\n\n\tTop 10 Species'%(generation,target,population))
+	print('GENERATION: %d\t Target: \'%s\'\n\tPopulation:%d\n\n\tTop 5'%(generation,target,population))
 	GiveBirth(population, species, nextGen)
 	evaluateFitness(species)
 	#selected = NaturalSelection(species)
 	Rank(species)
-	for i in range(10):
+	for i in range(5):
 		print('DNA : %s   Fitness: %d' %(species[i].DNA, species[i].fitness))
+	print('\n\tWorst 5')
+	for i in range(5):
+		print('DNA : %s   Fitness: %d' %(species[population - i - 1].DNA, species[population - i - 1].fitness))
 	recordFitness = species[0].fitness
 	printAverageFitness(species, generation)
 	if species[0].DNA == target:
